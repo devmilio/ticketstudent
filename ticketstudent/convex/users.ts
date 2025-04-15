@@ -14,4 +14,5 @@ export const updateUser = mutation({
         .withIndex("by_user_id", (q) => q.eq("userId", userId))
         .first();
     }
+    
 })

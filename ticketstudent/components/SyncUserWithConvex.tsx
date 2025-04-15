@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export default function SyncUserWithConvex() {
 
   const { user } = useUser();
-  // const updateUser = useMutation(api.users.updateUser);
+  const updateUser = useMutation(api.users.updateUser);
 
   useEffect(() => {
     if (!user) return;
@@ -17,7 +17,7 @@ export default function SyncUserWithConvex() {
       try {
         await updateUser({
           userId: user.id,
-          name: user.fullName,
+          name: user.fullName ?? "",
           email: user.emailAddresses[0]?.emailAddress ?? "",
         });
       } catch (error) {
