@@ -13,6 +13,23 @@ export const updateUser = mutation({
         .query("users")
         .withIndex("by_user_id", (q) => q.eq("userId", userId))
         .first();
-    }
     
+    if(existingUser){
+        // Update existing user values
+        await ctx.db.patch(existingUser._id,{
+            name,
+            email,
+        });
+        return existingUser._id;
+    }
+    // Create new user
+    const newUserId = await ctx.db.insert("users", {
+        userId,
+        name,
+        email,
+        stripeConnectId: undefined,
+    });
+  
+    return newUserId;
+    }
 })
