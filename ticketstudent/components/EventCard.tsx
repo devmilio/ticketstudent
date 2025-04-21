@@ -7,7 +7,7 @@ import { useUser } from "@clerk/nextjs";
 import { useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { StarIcon } from "lucide-react";
+import { CalendarDays, MapPin, StarIcon, Ticket } from "lucide-react";
 
 function EventCard( {eventId}: {eventId: Id<"events">}) {
   const { user } = useUser();
@@ -84,7 +84,7 @@ const isEventOwner = user?.id == event?.userId;
                   : "bg-green-50 text-green-700"
               }`}
             >
-              £{event.price.toFixed(2)}
+              ${event.price.toFixed(2)}
             </span>
             {availability.purchasedCount >= availability.totalTickets && (
               <span className="px-4 py-1.5 bg-red-50 text-red-700 font-semibold rounded-full text-sm">
@@ -93,6 +93,41 @@ const isEventOwner = user?.id == event?.userId;
             )}
           </div>
         </div>
+
+
+        <div className="mt-4 space-y-3">
+          <div className="flex items-center text-gray-600">
+            <MapPin className="w-4 h-4 mr-2" />
+            <span>{event.location}</span>
+          </div>
+
+          <div className="flex items-center text-gray-600">
+            <CalendarDays className="w-4 h-4 mr-2" />
+            <span>
+              {new Date(event.eventDate).toLocaleDateString()}{" "}
+              {isPastEvent && "(Passé)"}
+            </span>
+          </div>
+
+          <div className="flex items-center text-gray-600">
+            <Ticket className="w-4 h-4 mr-2" />
+            <span>
+              {availability.totalTickets - availability.purchasedCount} /{" "}
+              {availability.totalTickets} disponible
+              {!isPastEvent && availability.activeOffers > 0 && (
+                <span className="text-amber-600 text-sm ml-2">
+                  ({availability.activeOffers}{" "}
+                  {availability.activeOffers === 1 ? "person" : "people"} trying
+                  to buy)
+                </span>
+              )}
+            </span>
+          </div>
+        </div>
+
+        <p className="mt-4 text-gray-600 text-sm line-clamp-2">
+          {event.description}
+        </p>
       </div>
     </div>
   )
