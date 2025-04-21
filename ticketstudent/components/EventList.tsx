@@ -3,6 +3,8 @@
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import Spinner from "@/components/Spinner";
+import EventCard from "./EventCard";
+import { CalendarDays, Ticket } from "lucide-react";
 
 function EventList() {
   const events = useQuery(api.events.get);
@@ -41,30 +43,57 @@ function EventList() {
     .sort((a,b) => a.eventDate - b.eventDate);
 
   return (
-    // TODO : Togle for Past or Upcoming or Both
 
-    // TODO : Upcoming Events section
-
-    // TODO : Past Events section
-
-
-    // Simple UI for testing
-    /*
-    <div className="space-y-4">
-      {events.map((event) => (
-        <div key={event._id} className="border p-4 rounded shadow">
-          <h2 className="text-xl font-bold">{event.name}</h2>
-          <p>{event.description}</p>
-          <p><strong>Date:</strong> {new Date(event.eventDate).toLocaleString()}</p>
-          <p><strong>Location:</strong> {event.location}</p>
-          <p><strong>Price:</strong> ${event.price.toFixed(2)}</p>
-          <p><strong>Tickets:</strong> {event.totalTickets}</p>
-          {event.is_cancelled && <p className="text-red-600 font-semibold">Cancelled</p>}
+      // TODO : Togle for Past or Upcoming or Both
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900"> À Venir </h1>
+            <p className="mt-2 text-gray-600">
+              Découvrez des événements et acheter des billets
+            </p>
+          </div>
+          <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100">
+            <div className="flex items-center gap-2 text-gray-600">
+              <CalendarDays className="w-5 h-5" />
+              <span className="font-medium">
+                {upcomingEvents.length} événements à venir
+              </span>
+            </div>
+          </div>
         </div>
-      ))}
-    </div>
-    */
-  );
+  
+        {/* Upcoming Events section*/}
+        {upcomingEvents.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {upcomingEvents.map((event) => (
+              <EventCard key={event._id} eventId={event._id} />
+            ))}
+          </div>
+        ) : (
+          <div className="bg-gray-50 rounded-lg p-12 text-center mb-12">
+            <Ticket className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-gray-900">
+              No upcoming events
+            </h3>
+            <p className="text-gray-600 mt-1">Check back later for new events</p>
+          </div>
+        )}
+
+        {/* Past Events section*/}
+        {pastEvents.length > 0 && (
+          <>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Événements Passés</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {pastEvents.map((event) => (
+                <EventCard key={event._id} eventId={event._id} />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    );
 }
 
 export default EventList;

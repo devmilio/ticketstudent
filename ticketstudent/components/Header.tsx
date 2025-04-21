@@ -16,7 +16,7 @@ function Header() {
             <Image
               src={logo}
               alt="logo"
-              className="w-24 lg:w-28 h-auto"
+              className="w-28 lg:w-32 h-auto"
               priority
             />
           </Link>
