@@ -15,7 +15,6 @@ function EventList() {
       </div>
     );
   }
-
   // no events
   if (events.length === 0) {
     return <div>No events found.</div>;
@@ -28,7 +27,7 @@ function EventList() {
       !isNaN(event.eventDate)
       // && event.is_cancelled !== true
     )
-  // TODO People must be able to buy tickets after the show has started (change events def)
+  // TODO People must be able to buy tickets (see the events) after the show has started (change events struct ?)
   const pastEvents = validEvents
     .filter(event =>
       event.eventDate < Date.now()
@@ -42,6 +41,15 @@ function EventList() {
     .sort((a,b) => a.eventDate - b.eventDate);
 
   return (
+    // TODO : Togle for Past or Upcoming or Both
+
+    // TODO : Upcoming Events section
+
+    // TODO : Past Events section
+
+
+    // Simple UI for testing
+    /*
     <div className="space-y-4">
       {events.map((event) => (
         <div key={event._id} className="border p-4 rounded shadow">
@@ -55,6 +63,7 @@ function EventList() {
         </div>
       ))}
     </div>
+    */
   );
 }
 
