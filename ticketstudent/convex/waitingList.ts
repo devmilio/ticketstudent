@@ -1,5 +1,5 @@
-import { mutation, query } from "./_generated/server";
-import { v } from "convex/values";
+import { internalMutation, mutation, query } from "./_generated/server";
+import { GenericId, v } from "convex/values";
 import { WAITING_LIST_STATUS } from "@/convex/constants";
 
 // Know the position in the queue of a user for a specific event
@@ -43,3 +43,46 @@ export const getQueuePosition = query({
       };
     },
   });
+
+  export const releaseTicket = mutation({
+    args: {
+      eventId: v.id("events"),
+      waitingListId: v.id("waitingList"),
+    },
+    handler: async (ctx, { eventId, waitingListId }) => {
+      const entry = await ctx.db.get(waitingListId);
+      if (!entry || entry.status !== WAITING_LIST_STATUS.OFFERED) {
+        throw new Error("No valid ticket offer found");
+      }
+  
+      // Mark the entry as expired
+      await ctx.db.patch(waitingListId, {
+        status: WAITING_LIST_STATUS.EXPIRED,
+      });
+  
+      // TODO: Process queue to offer ticket to next person
+      // await processQueue(ctx, { eventId });
+    },
+  });
+
+  /**
+ * Internal mutation to expire a single offer and process queue for next person.
+ * Called by scheduled job when offer timer expires.
+ */
+export const expireOffer = internalMutation({
+  args: {
+    waitingListId: v.id("waitingList"),
+    eventId: v.id("events"),
+  },
+  handler: async (ctx, { waitingListId, eventId }) => {
+    const offer = await ctx.db.get(waitingListId);
+    if (!offer || offer.status !== WAITING_LIST_STATUS.OFFERED) return;
+
+    await ctx.db.patch(waitingListId, {
+      status: WAITING_LIST_STATUS.EXPIRED,
+    });
+
+    // TODO : await processQueue(ctx, { eventId });
+  },
+});
+
