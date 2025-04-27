@@ -2,7 +2,7 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 // Définir les routes prives
 const isPrivateRoute = createRouteMatcher([
-  '/dashboard',  // Seul le chemin "/dashboard" sera protégé
+  // '/dashboard',  // Aucune routes proteges pour le moment
 ]);
 
 export default clerkMiddleware(async (auth, req) => {

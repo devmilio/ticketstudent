@@ -22,6 +22,25 @@ import { internal } from "./_generated/api";
     },
   });
 
+  export const search = query({
+    args: { searchTerm: v.string() },
+    handler: async (ctx, { searchTerm }) => {
+      const events = await ctx.db
+        .query("events")
+        .filter((q) => q.eq(q.field("is_cancelled"), undefined))
+        .collect();
+  
+      return events.filter((event) => {
+        const searchTermLower = searchTerm.toLowerCase();
+        return (
+          event.name.toLowerCase().includes(searchTermLower) ||
+          event.description.toLowerCase().includes(searchTermLower) ||
+          event.location.toLowerCase().includes(searchTermLower)
+        );
+      });
+    },
+  });
+
   export const checkAvailability = query({
     args: { eventId: v.id("events") },
     handler: async (ctx, { eventId }) => {

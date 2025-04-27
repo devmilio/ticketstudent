@@ -9,6 +9,7 @@ export default function LandingPage() {
 
   return (
     <main className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4">
+      
       {/* Header */}
       <header className="w-full max-w-4xl text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
@@ -18,6 +19,16 @@ export default function LandingPage() {
           Proposez la meilleure expérience à vos participants avec nos solutions de billetterie en ligne, contrôle d’accès, cashless.
         </p>
       </header>
+
+      <div className="mt-12 flex gap-4 px-8 py-4 justify-center items-center">
+        <button
+          onClick={() => router.push("/events")}
+          className="flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-200 ease-in-out transform hover:scale-105"
+        >
+          <Grid className="text-2xl mr-3" /> {/* Icône Lucide pour Dashboard */}
+          Voir nos événements
+        </button>
+      </div>
 
       {/* Email Form */}
       <SignedOut>
@@ -41,18 +52,6 @@ export default function LandingPage() {
         </div>
       </SignedOut>
 
-      <SignedIn>
-      {/* Auth Buttons */}
-      <div className="mt-12 flex gap-4 justify-center items-center">
-        <button
-          onClick={() => router.push("/dashboard")}
-          className="flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-200 ease-in-out transform hover:scale-105"
-        >
-          <Grid className="text-2xl mr-3" /> {/* Icône Lucide pour Dashboard */}
-          Aller au tableau de bord
-        </button>
-      </div>
-      </SignedIn>
 
       {/* Divider */}
       <div className="h-px w-full max-w-2xl bg-gray-300 my-12"></div>

@@ -7,6 +7,7 @@ import EventCard from "./EventCard";
 import { CalendarDays, Ticket } from "lucide-react";
 
 function EventList() {
+  
   const events = useQuery(api.events.get);
 
   // loading
