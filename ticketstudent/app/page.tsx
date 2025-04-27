@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { Grid } from 'lucide-react';
 
 export default function LandingPage() {
   const router = useRouter();
@@ -41,15 +42,16 @@ export default function LandingPage() {
       </SignedOut>
 
       <SignedIn>
-        {/* Auth Buttons */}
-        <div className="mt-12 flex gap-4">
-            <button
-              onClick={() => router.push("/dashboard")}
-              className="text-green-600 hover:underline"
-            >
-              Aller au tableau de bord
-            </button>
-        </div>
+      {/* Auth Buttons */}
+      <div className="mt-12 flex gap-4 justify-center items-center">
+        <button
+          onClick={() => router.push("/dashboard")}
+          className="flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-200 ease-in-out transform hover:scale-105"
+        >
+          <Grid className="text-2xl mr-3" /> {/* Icône Lucide pour Dashboard */}
+          Aller au tableau de bord
+        </button>
+      </div>
       </SignedIn>
 
       {/* Divider */}
