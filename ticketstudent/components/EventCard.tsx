@@ -26,8 +26,9 @@ function EventCard( {eventId}: {eventId: Id<"events">}) {
     userId: user?.id ?? ""
   });
 
-  const imageUrl = useStorageUrl(event?.imageStorageId)
-  
+  // TODO: gerer les images de Convex 
+  // const imageUrl = useStorageUrl(event?.imageStorageId)
+  const imageUrl = "/images/placeholder.webp"
 
 if(!event || !availability){
   return null;
@@ -132,7 +133,7 @@ const renderTicketStatus = () => {
   // if user is in a queue
   if(queueInfo){
     return (
-      <div className="mt-4">
+      <div className="mt-2">
           {queueInfo.status === "offered" && (
             <PurchaseTicket eventId={eventId} />
           )}
