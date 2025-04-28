@@ -27,8 +27,8 @@ function EventCard( {eventId}: {eventId: Id<"events">}) {
   });
 
   // TODO: gerer les images de Convex 
-  // const imageUrl = useStorageUrl(event?.imageStorageId)
-  const imageUrl = "/images/placeholder.webp"
+  const imageUrl = useStorageUrl(event?.imageStorageId)
+  // const imageUrl = "/images/placeholder.webp"
 
 if(!event || !availability){
   return null;

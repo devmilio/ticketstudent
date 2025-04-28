@@ -13,7 +13,9 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as checkPassword from "../checkPassword.js";
 import type * as constants from "../constants.js";
+import type * as env from "../env.js";
 import type * as events from "../events.js";
 import type * as storage from "../storage.js";
 import type * as tickets from "../tickets.js";
@@ -29,7 +31,9 @@ import type * as waitingList from "../waitingList.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  checkPassword: typeof checkPassword;
   constants: typeof constants;
+  env: typeof env;
   events: typeof events;
   storage: typeof storage;
   tickets: typeof tickets;

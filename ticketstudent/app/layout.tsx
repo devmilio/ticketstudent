@@ -6,8 +6,8 @@ import { ConvexClientProvider } from "@/components/ConvexClientProvider";
 import Header from "@/components/Header";
 import SyncUserWithConvex from "@/components/SyncUserWithConvex";
 import { Toaster } from "@/components/ui/sonner";
-// fr-FR locale is imported as frFR
-import { frFR } from '@clerk/localizations'
+import { frFR } from '@clerk/localizations';
+import PasswordGate from "@/components/PasswordGate";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,15 +31,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ConvexClientProvider>
-          <ClerkProvider localization={frFR} >
-            <Header/>
-            <SyncUserWithConvex/>
-            {children}
-            <Toaster/>
+          <ClerkProvider localization={frFR}>
+            <PasswordGate>
+              <Header />
+              <SyncUserWithConvex />
+              {children}
+              <Toaster />
+            </PasswordGate>
           </ClerkProvider>
         </ConvexClientProvider>
       </body>
