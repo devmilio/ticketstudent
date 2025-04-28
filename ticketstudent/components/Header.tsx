@@ -23,12 +23,12 @@ function Header() {
         </div>
 
         {/* Search Bar */}
-        <div className="w-full lg:max-w-2xl mx-auto">
+        <div className="w-full lg:w-[50%] mx-auto">
           <SearchBar />
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-4 ml-auto">
+        <div className="hidden lg:flex items-center gap-2 ml-auto">
           <SignedIn>
             <Link href="/seller" className="bg-blue-600 text-white px-4 py-2 text-sm rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out shadow-md hover:shadow-lg">
               Vendre des billets

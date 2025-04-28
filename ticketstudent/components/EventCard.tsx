@@ -187,7 +187,7 @@ const renderTicketStatus = () => {
             </div>
             {isPastEvent && (
               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 mt-2">
-                Past Event
+              Événement passé
               </span>
             )}
           </div>
@@ -233,8 +233,7 @@ const renderTicketStatus = () => {
               {!isPastEvent && availability.activeOffers > 0 && (
                 <span className="text-amber-600 text-sm ml-2">
                   ({availability.activeOffers}{" "}
-                  {availability.activeOffers === 1 ? "person" : "people"} trying
-                  to buy)
+                  {availability.activeOffers === 1 ? "personne" : "personnes"} dans la file)
                 </span>
               )}
             </span>
