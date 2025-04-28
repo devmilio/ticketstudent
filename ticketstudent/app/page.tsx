@@ -11,13 +11,13 @@ export default function LandingPage() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-start pt-[5vh] md:pt-[14vh]">
       
-      <div className="relative max-w-[400px] w-full h-auto mb-8">
+      <div className="relative w-full max-w-[250px] sm:max-w-[400px] h-auto mb-8 mx-auto">
         <Image
           src="/images/main_2x.png"
           alt="cover image"
           width={500}
           height={500}
-          className="object-contain"
+          className="object-contain w-full h-auto"
           priority
         />
       </div>
