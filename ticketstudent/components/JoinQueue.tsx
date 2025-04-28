@@ -81,7 +81,7 @@ export default function JoinQueue({
               {isEventOwner ? (
                 <div className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-gray-100 text-gray-700 rounded-lg">
                   <OctagonXIcon className="w-5 h-5" />
-                  <span>You cannot buy a ticket for your own event</span>
+                  <span>Vous ne pouvez pas acheter de billet pour votre propre événement</span>
                 </div>
               ) : isPastEvent ? (
                 <div className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-gray-100 text-gray-500 rounded-lg cursor-not-allowed">
@@ -91,7 +91,7 @@ export default function JoinQueue({
               ) : availability.purchasedCount >= availability?.totalTickets ? (
                 <div className="text-center p-4">
                   <p className="text-lg font-semibold text-red-600">
-                    Sorry, this event is sold out
+                  Désolé, cet événement est complet
                   </p>
                 </div>
               ) : (
@@ -101,7 +101,7 @@ export default function JoinQueue({
                   className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200 shadow-md
                   flex items-center justify-center disabled:bg-gray-400 disabled:cursor-not-allowed"
                 >
-                  Buy Ticket
+                  Acheter un billet
                 </button>
               )}
             </>

@@ -60,7 +60,7 @@ function PurchaseTicket({eventId}: { eventId: Id<"events">}) {
 
 
   return (
-    <div className="bg-white p-2 rounded-xl border border-amber-200">
+    <div className="bg-white p-2 rounded-xl">
         <div className="space-y-4">
             <div className="bg-white rounded-lg p-6 border border-gray-200">
                 <div className="flex flex-col gap-4">
