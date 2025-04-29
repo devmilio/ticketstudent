@@ -142,7 +142,7 @@ const renderTicketStatus = () => {
             <div className="p-3 bg-red-50 rounded-lg border border-red-100">
               <span className="text-red-700 font-medium flex items-center">
                 <XCircle className="w-5 h-5 mr-2" />
-                Offer expired
+                Offre expirée
               </span>
             </div>
           )}
@@ -204,7 +204,7 @@ const renderTicketStatus = () => {
             </span>
             {availability.purchasedCount >= availability.totalTickets && (
               <span className="px-4 py-1.5 bg-red-50 text-red-700 font-semibold rounded-full text-sm">
-                Sold Out
+                Épuisé
               </span>
             )}
           </div>
