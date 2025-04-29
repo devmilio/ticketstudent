@@ -25,7 +25,8 @@ function EventPage() {
     eventId: params.id as Id<"events">,
   });
 
-  const imageUrl = useStorageUrl(event?.imageStorageId);
+  // TODO: banner image req in event creation (for the venue ?)
+  const imageUrl = useStorageUrl(event?.bannerImageStorageId);
 
   if (!event || !availability) {
     return (
