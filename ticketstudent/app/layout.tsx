@@ -20,8 +20,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TicketStudent",
-  description: "NextJS + Clerk + Convex Ticketing App",
+  title: "bpmtl",
+  description: "La billetterie en ligne EDM",
 };
 
 export default function RootLayout({

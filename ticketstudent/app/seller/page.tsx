@@ -1,8 +1,17 @@
+import SellerDashboard from "@/components/SellerDashboard";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-function page() {
+async function SellerPage() {
+  const { userId } = await auth();
+
+  if(!userId)redirect("/");
+  
   return (
-    <div>TODO: Vendre des billets avec Stripe</div>
+    <div className="min-h-screen bg-gray-50">
+      <SellerDashboard/>
+    </div>
   )
 }
 
-export default page
+export default SellerPage
