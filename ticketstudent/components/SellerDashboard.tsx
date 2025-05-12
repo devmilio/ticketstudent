@@ -44,7 +44,18 @@ export default function SellerDashboard() {
     try {
       if (stripeConnectId && accountStatus?.isActive) {
         const loginUrl = await createStripeConnectLoginLink(stripeConnectId);
-        window.location.href = loginUrl;
+  
+        // Open in centered popup window
+        const width = 900;
+        const height = 700;
+        const left = window.screenX + window.outerWidth - width - 30;
+        const top = window.screenY + (window.outerHeight - height) / 2;
+  
+        window.open(
+          loginUrl,
+          'StripeDashboard',
+          `width=${width},height=${height},top=${top},left=${left},resizable,scrollbars=yes`
+        );
       }
     } catch (error) {
       console.error("Error accessing Stripe Connect portal:", error);
@@ -67,7 +78,7 @@ export default function SellerDashboard() {
     <div className="max-w-3xl mx-auto p-6">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden">
         {/* Header Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-8 text-white">
+        <div className="bg-gradient-to-r from-blue-900 to-blue-700 px-6 py-8 text-white">
           <h2 className="text-2xl font-bold">
           Tableau de bord du vendeur</h2>
           <p className="text-blue-100 mt-2">
@@ -287,10 +298,10 @@ export default function SellerDashboard() {
                 {accountStatus.isActive && (
                   <button
                     onClick={handleManageAccount}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center"
+                    className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center"
                   >
                     <Cog className="w-4 h-4 mr-2" />
-                    Tableau de bord du vendeur
+                    Voir les ventes Stripe
                   </button>
                 )}
                 <button
