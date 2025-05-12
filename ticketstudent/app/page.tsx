@@ -13,7 +13,7 @@ export default function LandingPage() {
       
       <div className="relative w-full max-w-[250px] sm:max-w-[400px] h-auto mb-8 mx-auto">
         <Image
-          src="/images/main_2x.png"
+          src="/images/mainv2.png"
           alt="cover image"
           width={500}
           height={500}
